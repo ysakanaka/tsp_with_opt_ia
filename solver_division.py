@@ -41,12 +41,12 @@ def solve(cities):
 
     for i in range(1, N):
         if (cities[i][0] <= maxX/2.0) and (cities[i][1] >= maxY/2.0):
-            cities_ul.append(i)
-        elif (cities[i][0] <= maxX/2.0) and (cities[i][1] < maxY/2.0):
             cities_ll.append(i)
+        elif (cities[i][0] <= maxX/2.0) and (cities[i][1] < maxY/2.0):
+            cities_ul.append(i)
         elif (cities[i][0] > maxX/2.0) and (cities[i][1] >= maxY/2.0):
-            cities_ur.append(i)
-        else: cities_lr.append(i)
+            cities_lr.append(i)
+        else: cities_ur.append(i)
 
     while cities_ll:
         next_city = min(cities_ll, key=distance_from_current_city)
