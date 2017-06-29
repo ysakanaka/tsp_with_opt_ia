@@ -63,7 +63,7 @@ def solve(cities):
             cities_a.append(i)
         elif (cities[i][0] <= maxX/2.0) and (cities[i][1] <= maxY/2.0):
             cities_b.append(i)
-        elif (cities[i][0] <= 3*maxX/2.0) and (cities[i][1] <= maxY/2.0):
+        elif (cities[i][0] <= 3*maxX/4.0) and (cities[i][1] <= maxY/2.0):
             cities_c.append(i)
         elif (cities[i][1] <= maxY/2.0):
             cities_d.append(i)
