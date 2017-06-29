@@ -1,6 +1,13 @@
 Google STEP 2017: Code Readability, Code Review (with NP)
 ====
 
+8分割ののちgreedy、スタート地点はなるべくcenterになるようにしている。
+交差を無くそうと2-opt、3-optも試したが悪化したので、局所解を求める方が良いかも。
+4分割のものはsolver_division、現在変更中の8分割はsolver_division2
+
+
+
+
 [Hayato Ito](https://github.com/hayatoito) (hayato@google.com)
 
 
