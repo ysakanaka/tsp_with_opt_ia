@@ -153,7 +153,7 @@ def solve(cities):
 
         return cities
 
-    #solution = three_opt(solution)
+    solution = three_opt(solution)
 
     return solution
 
