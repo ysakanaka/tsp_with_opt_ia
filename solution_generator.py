@@ -9,7 +9,7 @@ import solver_greedy
 import solver_random
 import solver_final
 
-CHALLENGES = 6
+CHALLENGES = 4
 
 def generate_sample_solutions():
     solvers = ((solver_random, 'random'),
