@@ -2,6 +2,7 @@
 
 import sys
 import math
+import itertools
 
 from common import print_solution, read_input
 
@@ -125,11 +126,16 @@ def solve(cities):
         current_city = next_city
 
     def two_opt(cities):
-        for i in range(N-3):
-            distanceA = dist[i][i+1] + dist[i+2][i+3]
-            distanceB = dist[i][i+2] + dist[i+1][i+3]
-            if distanceB < distanceA:
-                cities[i+1], cities[i+2] = cities[i+2], cities[i+1]
+        for i in range(N-2):
+            for j in range(i+2, N):
+                if j==N-1:
+                    distanceA = dist[solution[i]][solution[i+1]] + dist[solution[j]][solution[0]]
+                    distanceB = dist[solution[i]][solution[j]] + dist[solution[i+1]][solution[0]]
+                else:
+                    distanceA = dist[solution[i]][solution[i+1]] + dist[solution[j]][solution[j+1]]
+                    distanceB = dist[solution[i]][solution[j]] + dist[solution[i+1]][solution[j+1]]
+                if distanceB < distanceA:
+                    cities[i+1], cities[j] = cities[j], cities[i+1]
 
         return cities
 
@@ -153,7 +159,18 @@ def solve(cities):
 
         return cities
 
-    solution = three_opt(solution)
+    order = [range(8)]
+    order_list = list(itertools.permutations(order))
+
+    #for i in range(N-9):
+    #    leastdistance = dist[i][i+1] + dist[i+2][i+3] + dist[i+4][i+5] +dist[i+6][i+7]
+    #    for j in range(40320):
+    #        newdistance = dist[order_list[j][0]+i][order_list[j][1]+i] + dist[order_list[j][2]+i][order_list[j][3]+i] + dist[order_list[j][4]+i]][order_list[j][5]+i] +dist[order_list[j][6]+i][order_list[j][7]+i]
+    #        if newdistance < leastdistance:
+    #            pass
+
+
+    solution = two_opt(solution)
 
     return solution
 
