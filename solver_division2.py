@@ -126,7 +126,7 @@ def solve(cities):
         current_city = next_city
 
     def two_opt(cities):
-        for i in range(N-2):
+        for i in range(0,N-2, 2):
             for j in range(i+2, N):
                 if j==N-1:
                     distanceA = dist[solution[i]][solution[i+1]] + dist[solution[j]][solution[0]]
@@ -141,19 +141,19 @@ def solve(cities):
 
     def three_opt(cities):
         for i in range(N-5):
-            if dist[i][i+2] + dist[i+1][i+4] + dist[i+3][i+5] < dist[i][i+1] + dist[i+2][i+3] + dist[i+4][i+5]:
+            if dist[solution[i]][solution[i+2]] + dist[solution[i+1]][solution[i+4]] + dist[solution[i+3]][solution[i+5]] < dist[solution[i]][solution[i+1]] + dist[solution[i+2]][solution[i+3]] + dist[solution[i+4]][solution[i+5]]:
                 cities[i+1], cities[i+2] = cities[i+2], cities[i+1]
                 cities[i+3], cities[i+4] = cities[i+4], cities[i+3]
 
-            elif dist[i][i+4] + dist[i+2][i+5] + dist[i+1][i+3] < dist[i][i+1] + dist[i+2][i+3] + dist[i+4][i+5]:
+            elif dist[solution[i]][solution[i+4]] + dist[solution[i+2]][solution[i+5]] + dist[solution[i+1]][solution[i+3]] < dist[solution[i]][solution[i+1]] + dist[solution[i+2]][solution[i+3]] + dist[solution[i+4]][solution[i+5]]:
                 cities[i+1], cities[i+4] = cities[i+4], cities[i+1]
                 cities[i+3], cities[i+5] = cities[i+5], cities[i+3]
 
-            elif dist[i][i+4] + dist[i+1][i+2] + dist[i+3][i+5] < dist[i][i+1] + dist[i+2][i+3] + dist[i+4][i+5]:
+            elif dist[solution[i]][solution[i+4]] + dist[solution[i+1]][solution[i+2]] + dist[solution[i+3]][solution[i+5]] < dist[solution[i]][solution[i+1]] + dist[solution[i+2]][solution[i+3]] + dist[solution[i+4]][solution[i+5]]:
                 cities[i+1], cities[i+4] = cities[i+4], cities[i+1]
                 cities[i+3], cities[i+1] = cities[i+1], cities[i+3]
 
-            elif dist[i][i+5] + dist[i+3][i+4] + dist[i+1][i+2] < dist[i][i+1] + dist[i+2][i+3] + dist[i+4][i+5]:
+            elif dist[solution[i]][solution[i+5]] + dist[solution[i+3]][solution[i+4]] + dist[solution[i+1]][solution[i+2]] < dist[solution[i]][solution[i+1]] + dist[solution[i+2]][solution[i+3]] + dist[solution[i+4]][solution[i+5]]:
                 cities[i+1], cities[i+5] = cities[i+5], cities[i+1]
                 cities[i+2], cities[i+4] = cities[i+4], cities[i+2]
 
@@ -170,7 +170,7 @@ def solve(cities):
     #            pass
 
 
-    solution = two_opt(solution)
+    solution = three_opt(solution)
 
     return solution
 
