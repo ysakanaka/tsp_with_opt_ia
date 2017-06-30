@@ -126,7 +126,7 @@ def solve(cities):
         current_city = next_city
 
     def two_opt(cities):
-        for i in range(0,N-2, 2):
+        for i in range(0,N-2):
             for j in range(i+2, N):
                 if j==N-1:
                     distanceA = dist[solution[i]][solution[i+1]] + dist[solution[j]][solution[0]]
@@ -170,7 +170,10 @@ def solve(cities):
     #            pass
 
 
-    solution = three_opt(solution)
+    #solution = three_opt(solution)
+    #solution = two_opt(solution)
+    #solution = two_opt(solution)
+    #solution = two_opt(solution)
 
     return solution
 
