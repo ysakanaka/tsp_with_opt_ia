@@ -3,7 +3,8 @@ Google STEP 2017: Code Readability, Code Review (with NP)
 
 8分割ののちgreedy、スタート地点はなるべくcenterになるようにしている。
 交差を無くそうと2-opt、3-optも試したが悪化したので、局所解を求める方が良いかも。
-4分割のものはsolver_division、現在変更中の8分割はsolver_division2
+4分割のものはsolver_division、8分割はsolver_division2
+2-optと3-optを含むのはsolver_final.py　2-optと3-optの致命的な間違いは直しました。
 
 
 
