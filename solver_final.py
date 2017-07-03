@@ -149,6 +149,88 @@ def solve(cities):
 
        return cities
 
+   def two_opt_div(cities):
+       total = 0
+       distanceA = 0
+       distanceB = 0
+       m = N
+       while True:
+           count = 0
+           for i in range(0,N/4-2):
+               for j in range(i+2, N/4):
+                   if j==N-1:
+                       distanceA = dist[solution[i]][solution[i+1]] + dist[solution[j]][solution[0]]
+                       distanceB = dist[solution[i]][solution[j]] + dist[solution[i+1]][solution[0]]
+                   else:
+                       distanceA = dist[solution[i]][solution[i+1]] + dist[solution[j]][solution[j+1]]
+                       distanceB = dist[solution[i]][solution[j]] + dist[solution[i+1]][solution[j+1]]
+                   if distanceB < distanceA:
+                       cities[i+1], cities[j] = cities[j], cities[i+1]
+                       count += 1
+           total += count
+           print"count"
+           print count
+           if count < 1:
+               break
+
+       while True:
+           count = 0
+           for i in range(N/4,2*N/4-2):
+               for j in range(i+2, 2*N/4):
+                   if j==N-1:
+                       distanceA = dist[solution[i]][solution[i+1]] + dist[solution[j]][solution[0]]
+                       distanceB = dist[solution[i]][solution[j]] + dist[solution[i+1]][solution[0]]
+                   else:
+                       distanceA = dist[solution[i]][solution[i+1]] + dist[solution[j]][solution[j+1]]
+                       distanceB = dist[solution[i]][solution[j]] + dist[solution[i+1]][solution[j+1]]
+                   if distanceB < distanceA:
+                       cities[i+1], cities[j] = cities[j], cities[i+1]
+                       count += 1
+           total += count
+           print"count"
+           print count
+           if count < 1:
+               break
+       while True:
+           count = 0
+           for i in range(2*N/4,3*N/4-2):
+               for j in range(i+2, 3*N/4):
+                   if j==N-1:
+                       distanceA = dist[solution[i]][solution[i+1]] + dist[solution[j]][solution[0]]
+                       distanceB = dist[solution[i]][solution[j]] + dist[solution[i+1]][solution[0]]
+                   else:
+                       distanceA = dist[solution[i]][solution[i+1]] + dist[solution[j]][solution[j+1]]
+                       distanceB = dist[solution[i]][solution[j]] + dist[solution[i+1]][solution[j+1]]
+                   if distanceB < distanceA:
+                       cities[i+1], cities[j] = cities[j], cities[i+1]
+                       count += 1
+           total += count
+           print"count"
+           print count
+           if count < 4:
+               break
+       while True:
+           count = 0
+           for i in range(3*N/4,N-2):
+               for j in range(i+2, N):
+                   if j==N-1:
+                       distanceA = dist[solution[i]][solution[i+1]] + dist[solution[j]][solution[0]]
+                       distanceB = dist[solution[i]][solution[j]] + dist[solution[i+1]][solution[0]]
+                   else:
+                       distanceA = dist[solution[i]][solution[i+1]] + dist[solution[j]][solution[j+1]]
+                       distanceB = dist[solution[i]][solution[j]] + dist[solution[i+1]][solution[j+1]]
+                   if distanceB < distanceA:
+                       cities[i+1], cities[j] = cities[j], cities[i+1]
+                       count += 1
+           total += count
+           print"count"
+           print count
+           if count < 1:
+               break
+
+       return cities
+
+
    def three_opt(cities):
        total = 0
        distanceA = 0
@@ -181,7 +263,105 @@ def solve(cities):
 
        return cities
 
-   solution = two_opt(solution)
+   def two_opt_div_half(cities):
+       total = 0
+       distanceA = 0
+       distanceB = 0
+       m = N
+       while True:
+           count = 0
+           for i in range(0,N/2-2):
+               for j in range(i+2, N/2):
+                   if j==N-1:
+                       distanceA = dist[solution[i]][solution[i+1]] + dist[solution[j]][solution[0]]
+                       distanceB = dist[solution[i]][solution[j]] + dist[solution[i+1]][solution[0]]
+                   else:
+                       distanceA = dist[solution[i]][solution[i+1]] + dist[solution[j]][solution[j+1]]
+                       distanceB = dist[solution[i]][solution[j]] + dist[solution[i+1]][solution[j+1]]
+                   if distanceB < distanceA:
+                       cities[i+1], cities[j] = cities[j], cities[i+1]
+                       count += 1
+           total += count
+           print"count"
+           print count
+           if count < 1:
+               break
+
+       while True:
+           count = 0
+           for i in range(N/2,N-2):
+               for j in range(i+2, N):
+                   if j==N-1:
+                       distanceA = dist[solution[i]][solution[i+1]] + dist[solution[j]][solution[0]]
+                       distanceB = dist[solution[i]][solution[j]] + dist[solution[i+1]][solution[0]]
+                   else:
+                       distanceA = dist[solution[i]][solution[i+1]] + dist[solution[j]][solution[j+1]]
+                       distanceB = dist[solution[i]][solution[j]] + dist[solution[i+1]][solution[j+1]]
+                   if distanceB < distanceA:
+                       cities[i+1], cities[j] = cities[j], cities[i+1]
+                       count += 1
+           total += count
+           print"count"
+           print count
+           if count < 1:
+               break
+       return cities
+
+
+
+   def or_opt(cities, divnumber):
+       total = 0
+       for i in xrange(1, divnumber+1):
+           for j in xrange(0+(i-1)*N/divnumber, i*N/divnumber):
+               while True:
+                   count = 0
+                   #print j
+                   length = i*N/divnumber
+                   #print length
+                   pre_city1 = j-1
+                   post_city1 = j+1
+                   if pre_city1 < 0: pre_city1 = divnumber-1
+                   if post_city1 == length: post_city1 = 0
+                   for k in xrange(length):
+                       #print k
+                       #print post_city1
+                       post_city2 = k+1
+                       if post_city2 == length: post_city2 = 0
+                       if k != j and post_city2 != j:
+                           if dist[solution[pre_city1]][solution[post_city1]] + dist[solution[k]][solution[j]] + dist[solution[j]][solution[post_city2]] < dist[solution[pre_city1]][solution[j]] + dist[solution[j]][solution[post_city1]] + dist[solution[k]][solution[post_city2]]:
+                               p = solution[j]
+                               if post_city1 == 0:
+                                   solution.pop()
+                               else:
+                                   solution[j:post_city1] = []
+
+                               if j < k:
+                                   solution[k:k] = [p]
+                               else:
+                                   solution[post_city2:post_city2] = [p]
+                               count += 1
+                               print solution
+
+                   total += count
+                   print count
+                   if count < 1:
+                       break
+       return cities
+
+
+   solution = two_opt_div(solution)
+   #solution = two_opt_div_half(solution)
+
+   solution = or_opt(solution, 1)
+   solution = two_opt_div(solution)
+   #solution = two_opt_div_half(solution)
+
+   solution = or_opt(solution, 1)
+
+   solution = two_opt_div(solution)
+   #solution = two_opt_div_half(solution)
+
+   solution = or_opt(solution, 1)
 
    return solution
 
