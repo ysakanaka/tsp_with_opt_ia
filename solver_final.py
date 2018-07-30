@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/biN//env python3
 
 import sys
 import math
@@ -156,8 +156,8 @@ def solve(cities):
        m = N
        while True:
            count = 0
-           for i in range(0,N/4-2):
-               for j in range(i+2, N/4):
+           for i in range(0,N//4-2):
+               for j in range(i+2, N//4):
                    if j==N-1:
                        distanceA = dist[solution[i]][solution[i+1]] + dist[solution[j]][solution[0]]
                        distanceB = dist[solution[i]][solution[j]] + dist[solution[i+1]][solution[0]]
@@ -168,15 +168,15 @@ def solve(cities):
                        cities[i+1], cities[j] = cities[j], cities[i+1]
                        count += 1
            total += count
-           print"count"
-           print count
+           #print"count"
+           #print count
            if count < 1:
                break
 
        while True:
            count = 0
-           for i in range(N/4,2*N/4-2):
-               for j in range(i+2, 2*N/4):
+           for i in range(N//4,2*N//4-2):
+               for j in range(i+2, 2*N//4):
                    if j==N-1:
                        distanceA = dist[solution[i]][solution[i+1]] + dist[solution[j]][solution[0]]
                        distanceB = dist[solution[i]][solution[j]] + dist[solution[i+1]][solution[0]]
@@ -187,14 +187,14 @@ def solve(cities):
                        cities[i+1], cities[j] = cities[j], cities[i+1]
                        count += 1
            total += count
-           print"count"
-           print count
+           #print"count"
+           #print count
            if count < 1:
                break
        while True:
            count = 0
-           for i in range(2*N/4,3*N/4-2):
-               for j in range(i+2, 3*N/4):
+           for i in range(2*N//4,3*N//4-2):
+               for j in range(i+2, 3*N//4):
                    if j==N-1:
                        distanceA = dist[solution[i]][solution[i+1]] + dist[solution[j]][solution[0]]
                        distanceB = dist[solution[i]][solution[j]] + dist[solution[i+1]][solution[0]]
@@ -205,13 +205,13 @@ def solve(cities):
                        cities[i+1], cities[j] = cities[j], cities[i+1]
                        count += 1
            total += count
-           print"count"
-           print count
+           #print"count"
+           #print count
            if count < 4:
                break
        while True:
            count = 0
-           for i in range(3*N/4,N-2):
+           for i in range(3*N//4,N-2):
                for j in range(i+2, N):
                    if j==N-1:
                        distanceA = dist[solution[i]][solution[i+1]] + dist[solution[j]][solution[0]]
@@ -223,8 +223,8 @@ def solve(cities):
                        cities[i+1], cities[j] = cities[j], cities[i+1]
                        count += 1
            total += count
-           print"count"
-           print count
+           #print"count"
+           #print count
            if count < 1:
                break
 
@@ -270,8 +270,8 @@ def solve(cities):
        m = N
        while True:
            count = 0
-           for i in range(0,N/2-2):
-               for j in range(i+2, N/2):
+           for i in range(0,N//2-2):
+               for j in range(i+2, N//2):
                    if j==N-1:
                        distanceA = dist[solution[i]][solution[i+1]] + dist[solution[j]][solution[0]]
                        distanceB = dist[solution[i]][solution[j]] + dist[solution[i+1]][solution[0]]
@@ -282,14 +282,14 @@ def solve(cities):
                        cities[i+1], cities[j] = cities[j], cities[i+1]
                        count += 1
            total += count
-           print"count"
-           print count
+           #print"count"
+           #print count
            if count < 1:
                break
 
        while True:
            count = 0
-           for i in range(N/2,N-2):
+           for i in range(N//2,N-2):
                for j in range(i+2, N):
                    if j==N-1:
                        distanceA = dist[solution[i]][solution[i+1]] + dist[solution[j]][solution[0]]
@@ -301,8 +301,8 @@ def solve(cities):
                        cities[i+1], cities[j] = cities[j], cities[i+1]
                        count += 1
            total += count
-           print"count"
-           print count
+           #print"count"
+           #print count
            if count < 1:
                break
        return cities
@@ -311,18 +311,18 @@ def solve(cities):
 
    def or_opt(cities, divnumber):
        total = 0
-       for i in xrange(1, divnumber+1):
-           for j in xrange(0+(i-1)*N/divnumber, i*N/divnumber):
+       for i in range(1, divnumber+1):
+           for j in range(0+(i-1)*N//divnumber, i*N//divnumber):
                while True:
                    count = 0
                    #print j
-                   length = i*N/divnumber
+                   length = i*N//divnumber
                    #print length
                    pre_city1 = j-1
                    post_city1 = j+1
                    if pre_city1 < 0: pre_city1 = divnumber-1
                    if post_city1 == length: post_city1 = 0
-                   for k in xrange(length):
+                   for k in range(length):
                        #print k
                        #print post_city1
                        post_city2 = k+1
@@ -340,10 +340,10 @@ def solve(cities):
                                else:
                                    solution[post_city2:post_city2] = [p]
                                count += 1
-                               print solution
+                               #print solution
 
                    total += count
-                   print count
+                   #print count
                    if count < 1:
                        break
        return cities

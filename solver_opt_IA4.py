@@ -5,6 +5,7 @@ import math
 import random
 import numpy
 import copy
+import solver_final
 
 from common import print_solution, read_input
 from deap import base
@@ -72,12 +73,11 @@ def solve(cities):
         for j in range(N):
             dist[i][j] = dist[j][i] = distance(cities[i], cities[j])
 
-    solution = list(range(0, N))
+    solution = solver_final.solve(cities)
 
     pop = []
     hyppops = []
     for i in range(MAXPOP):
-        random.shuffle(solution)
         pop.append(Cell(solution, 0, evaluate(solution, dist, N)))
 
     for generation in range(10000):
@@ -85,8 +85,9 @@ def solve(cities):
         clones = copy.deepcopy(pop)
 
         for clone in clones:
-            for i in range(N // 8):
-                clone.swap(random.randrange(0, N), random.randrange(0, N))
+            for i in range(1):
+                pos = random.randrange(0, N - 1)
+                clone.swap(pos, random.randrange(pos, pos + 1))
 
             newfit = evaluate(clone.getRoute(), dist, N)
 
@@ -125,15 +126,21 @@ def solve(cities):
 
         lowest = pop[0].getFitness()
         lowestpop = 0
+        average = 0
 
         for i in range(len(pop)):
+            average += pop[i].getFitness()
             if pop[i].getFitness() < lowest:
                 lowest = pop[i].getFitness()
                 lowestpop = i
         solution = pop[lowestpop].route
-        #pop[lowestpop].setAge(0)
+        pop[lowestpop].setAge(0)
+        average = average/len(pop)
+        print(generation)
+        print(average)
         print(lowest)
         clones.clear()
+        hyppops.clear()
 
         #for p in pop:
             #print(p.getRoute())
@@ -144,4 +151,4 @@ def solve(cities):
 if __name__ == '__main__':
     assert len(sys.argv) > 1
     solution = solve(read_input(sys.argv[1]))
-    #print_solution(solution)
+    print_solution(solution)
